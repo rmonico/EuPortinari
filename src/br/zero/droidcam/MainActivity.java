@@ -2,53 +2,81 @@ package br.zero.droidcam;
 
 import android.app.Activity;
 import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private static final String DEBUG_TAG = "MainActivity";
 	private Camera mCamera;
-	private MaskedCameraPreview mPreview;
+	private CameraPreview mCameraSurfaceView;
+
+	// private MaskSurfaceView mMaskSurfaceView;
+	// private FrameLayout maskFrame;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		int frontCameraId = findFrontFacingCamera();
+
 		// Create an instance of Camera
-		mCamera = getCameraInstance();
+		mCamera = getCameraInstance(frontCameraId);
+		
+		mCamera.setDisplayOrientation(90);
 
 		if (mCamera == null) {
 			Toast.makeText(null, "Camera not found", Toast.LENGTH_SHORT).show();
 			return;
 		}
-
 		// Create our Preview view and set it as the content of our activity.
-//		mPreview = new CameraPreview(this, mCamera);
-//		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-//		preview.addView(mPreview);
-		mPreview = new MaskedCameraPreview(this, mCamera);
+		mCameraSurfaceView = new CameraPreview(this, mCamera);
+
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-		preview.addView(mPreview);
+		preview.addView(mCameraSurfaceView);
+
+		// mMaskSurfaceView = new MaskSurfaceView(this);
+		//
+		// maskFrame = (FrameLayout) findViewById(R.id.mask_preview);
+		// maskFrame.addView(mMaskSurfaceView);
+	}
+
+	private int findFrontFacingCamera() {
+		int cameraId = -1;
+		// Search for the front facing camera
+		int numberOfCameras = Camera.getNumberOfCameras();
+		for (int i = 0; i < numberOfCameras; i++) {
+			CameraInfo info = new CameraInfo();
+			Camera.getCameraInfo(i, info);
+			if (info.facing == CameraInfo.CAMERA_FACING_FRONT) {
+				Log.d(DEBUG_TAG, "Camera found");
+				cameraId = i;
+				break;
+			}
+		}
+		return cameraId;
 	}
 
 	/** A safe way to get an instance of the Camera object. */
-	public static Camera getCameraInstance() {
+	public Camera getCameraInstance(int cameraId) {
 		Camera c = null;
 		try {
-			c = Camera.open(); // attempt to get a Camera instance
+			c = Camera.open(cameraId); // attempt to get a Camera instance
 		} catch (Exception e) {
-			// Camera is not available (in use or does not exist)
+			Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 		}
 		return c; // returns null if camera is unavailable
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mPreview.onResumeMySurfaceView();
+		// mMaskSurfaceView.onResumeMySurfaceView();
 	}
 
 	@Override
@@ -64,7 +92,7 @@ public class MainActivity extends Activity {
 			mCamera = null;
 		}
 		super.onPause();
-		
-		mPreview.onPauseMySurfaceView();
+
+		// mMaskSurfaceView.onPauseMySurfaceView();
 	}
 }
