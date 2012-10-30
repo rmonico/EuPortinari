@@ -15,9 +15,6 @@ public class MainActivity extends Activity {
 	private Camera mCamera;
 	private CameraPreview mCameraSurfaceView;
 
-	// private MaskSurfaceView mMaskSurfaceView;
-	// private FrameLayout maskFrame;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,16 +31,12 @@ public class MainActivity extends Activity {
 			Toast.makeText(null, "Camera not found", Toast.LENGTH_SHORT).show();
 			return;
 		}
+
 		// Create our Preview view and set it as the content of our activity.
 		mCameraSurfaceView = new CameraPreview(this, mCamera);
 
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(mCameraSurfaceView);
-
-		// mMaskSurfaceView = new MaskSurfaceView(this);
-		//
-		// maskFrame = (FrameLayout) findViewById(R.id.mask_preview);
-		// maskFrame.addView(mMaskSurfaceView);
 	}
 
 	private int findFrontFacingCamera() {
@@ -76,7 +69,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// mMaskSurfaceView.onResumeMySurfaceView();
 	}
 
 	@Override
@@ -92,7 +84,5 @@ public class MainActivity extends Activity {
 			mCamera = null;
 		}
 		super.onPause();
-
-		// mMaskSurfaceView.onPauseMySurfaceView();
 	}
 }
