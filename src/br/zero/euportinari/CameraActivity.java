@@ -1,4 +1,4 @@
-package br.zero.droidcam;
+package br.zero.euportinari;
 
 import android.app.Activity;
 import android.hardware.Camera;
