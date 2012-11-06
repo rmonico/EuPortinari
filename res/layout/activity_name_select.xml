@@ -3,12 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/select_name_background" />
+
+    <ImageButton
+        android:id="@+id/imageButtonOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/name_select_label"
-        tools:context=".NameSelectActivity" />
+        android:layout_centerVertical="false"
+        android:layout_marginBottom="170dp"
+        android:background="@android:color/transparent"
+        android:onClick="selectNameOnClick"
+        android:src="@drawable/ok_button" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="233dp"
+        android:background="@android:color/transparent"
+        android:capitalize="words"
+        android:contentDescription="Caixa de texto para entrar com o nome"
+        android:ems="10"
+        android:inputType="text|textCapCharacters"
+        android:width="120dp" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
