@@ -1,8 +1,10 @@
 <resources>
 
     <string name="app_name">Eu Portinari</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Eu Portinari</string>
+    <string name="menu_settings">Configurações</string>
+    <string name="main_title">Eu Portinari</string>
     <string name="capture">Capture</string>
+    <string name="name_select_label">Name selection Activity</string>
+    <string name="name_select_title">Digite seu nome</string>
 
 </resources>
