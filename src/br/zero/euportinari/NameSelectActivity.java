@@ -1,10 +1,10 @@
 package br.zero.euportinari;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 public class NameSelectActivity extends Activity {
 
@@ -21,6 +21,8 @@ public class NameSelectActivity extends Activity {
     }
     
     public void selectNameOnClick(View view) {
-    	Toast.makeText(this, "selectNameOnClick", Toast.LENGTH_LONG).show();
+    	Intent intent = new Intent(this, HomeActivity.class);
+    	
+    	startActivity(intent);
     }
 }
