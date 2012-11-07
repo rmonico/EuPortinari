@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity {
+public class PresentationActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,6 @@ public class MainActivity extends Activity {
 
 	public void continuarOnClick(View view) {
 		Intent intent = new Intent(this, NameSelectActivity.class);
-
-		// intent.putExtra("name", "alguma coisa");
 
 		startActivity(intent);
 	}
