@@ -6,6 +6,7 @@ import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -89,5 +90,9 @@ public class CameraActivity extends Activity {
 			mCamera = null;
 		}
 		super.onPause();
+	}
+	
+	public void onTakePicture(View view) {
+		Toast.makeText(this, "onTakePicture", Toast.LENGTH_LONG).show();
 	}
 }
