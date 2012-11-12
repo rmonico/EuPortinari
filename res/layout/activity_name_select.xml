@@ -11,18 +11,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/select_name_background" />
 
-    <ImageButton
-        android:id="@+id/imageButtonOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="false"
-        android:layout_marginBottom="170dp"
-        android:background="@android:color/transparent"
-        android:onClick="selectNameOnClick"
-        android:src="@drawable/ok_button" />
-
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"
@@ -34,10 +22,21 @@
         android:capitalize="words"
         android:contentDescription="Caixa de texto para entrar com o nome"
         android:ems="10"
-        android:inputType="text|textCapCharacters"
+        android:inputType="text|textCapWords"
         android:width="120dp" >
 
         <requestFocus />
     </EditText>
+
+    <ImageButton
+        android:id="@+id/select_name_ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        android:onClick="selectNameOnClick"
+        android:src="@drawable/ok_button" />
 
 </RelativeLayout>
