@@ -23,8 +23,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:onClick="onPiaoClick"
         android:src="@drawable/piao_retrato" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:onClick="onPiaoClick" />
 
     <RelativeLayout
         android:id="@+id/RelativeLayout1"
@@ -84,7 +94,6 @@
             android:background="@android:color/transparent"
             android:paddingRight="10dp"
             android:src="@drawable/info_button" />
-
     </RelativeLayout>
 
 </RelativeLayout>
