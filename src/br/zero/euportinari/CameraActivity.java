@@ -21,26 +21,27 @@ public class CameraActivity extends Activity {
 		setContentView(R.layout.activity_camera);
 
 		int frontCameraId = findFrontFacingCamera();
-
+		
+		if (frontCameraId == -1) {
+			Toast.makeText(this, "Câmera frontal não encontrada, usando camera padrão.", Toast.LENGTH_LONG);
+			frontCameraId = 0;
+		}
+		
 		// Create an instance of Camera
 		mCamera = getCameraInstance(frontCameraId);
 		
-		mCamera.setDisplayOrientation(90);
-
 		if (mCamera == null) {
-			Toast.makeText(null, "Camera not found", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Camera not found", Toast.LENGTH_SHORT).show();
 			return;
 		}
+
+		mCamera.setDisplayOrientation(90);
 
 		// Create our Preview view and set it as the content of our activity.
 		mCameraSurfaceView = new CameraSurface(this, mCamera);
 
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(mCameraSurfaceView);
-		
-		String name = getIntent().getExtras().getString("name");
-		
-		Toast.makeText(this, name, Toast.LENGTH_LONG).show();
 	}
 
 	private int findFrontFacingCamera() {
