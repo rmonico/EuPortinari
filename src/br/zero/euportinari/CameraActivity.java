@@ -224,5 +224,10 @@ public class CameraActivity extends Activity {
 
 		mCamera.takePicture(null, null, jpegCallback);
 	}
-	
+
+	public void onSwitchCameraClick(View view) {
+		Intent intent = new Intent(this, BackCameraActivity.class);
+		
+		startActivity(intent);
+	}
 }

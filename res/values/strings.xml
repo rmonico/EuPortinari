@@ -8,5 +8,6 @@
     <string name="name_select_title">Digite seu nome</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_back_camera">BackCameraActivity</string>
 
 </resources>
