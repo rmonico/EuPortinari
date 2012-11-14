@@ -1,6 +1,7 @@
 package br.zero.euportinari;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
@@ -90,6 +91,8 @@ public class BackCameraActivity extends Activity {
 	}
 
 	public void onSwitchCameraButton(View view) {
-		Toast.makeText(this, "onSwitchCameraButton", Toast.LENGTH_LONG).show();
+		Intent intent = new Intent(this, CameraActivity.class);
+		
+		startActivity(intent);
 	}
 }
