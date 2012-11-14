@@ -78,4 +78,14 @@ public class BackCameraActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_back_camera, menu);
         return true;
     }
+	
+	@Override
+	protected void onPause() {
+		if (mCamera != null) {
+			mCamera.release();
+			mCamera = null;
+		}
+		super.onPause();
+	}
+
 }
