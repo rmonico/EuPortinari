@@ -21,4 +21,45 @@
         android:scaleType="fitXY"
         android:src="@drawable/back_camera_mask" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:paddingBottom="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/take_picture" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:onClick="onSwitchCameraButton"
+            android:paddingLeft="15dp"
+            android:src="@drawable/switch_cameras" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:paddingRight="15dp"
+            android:src="@drawable/save_picture" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

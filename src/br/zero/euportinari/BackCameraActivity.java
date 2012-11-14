@@ -1,11 +1,12 @@
 package br.zero.euportinari;
 
+import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
-import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -88,4 +89,7 @@ public class BackCameraActivity extends Activity {
 		super.onPause();
 	}
 
+	public void onSwitchCameraButton(View view) {
+		Toast.makeText(this, "onSwitchCameraButton", Toast.LENGTH_LONG).show();
+	}
 }
