@@ -43,6 +43,22 @@
             android:name=".BackCameraActivity"
             android:label="@string/title_activity_back_camera" >
         </activity>
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/title_activity_info" >
+        </activity>
+        <activity
+            android:name=".ObrasActivity"
+            android:label="@string/title_activity_obras" >
+        </activity>
+        <activity
+            android:name=".ExerciciosActivity"
+            android:label="@string/title_activity_exercicios" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>
