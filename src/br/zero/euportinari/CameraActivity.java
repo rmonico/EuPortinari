@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -119,11 +120,16 @@ public class CameraActivity extends Activity {
 
 			@Override
 			public void onPictureTaken(byte[] data, Camera camera) {
+				Options opts = new BitmapFactory.Options();
+				opts.inDither=false;
+				opts.inPurgeable=true;
+				opts.inInputShareable=true;
+				opts.inSampleSize = 8;
 				Bitmap cameraImage = BitmapFactory.decodeByteArray(data, 0,
-						data.length);
+						data.length, opts);
 
 				Bitmap mask = BitmapFactory.decodeResource(getResources(),
-						R.drawable.mask);
+						R.drawable.mask, opts);
 
 				Bitmap combined = Bitmap.createBitmap(cameraImage.getHeight(),
 						cameraImage.getWidth(), Bitmap.Config.ARGB_8888);

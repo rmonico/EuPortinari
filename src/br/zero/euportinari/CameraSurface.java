@@ -72,6 +72,12 @@ public class CameraSurface extends SurfaceView implements
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
+		// stop preview before making changes
+		try {
+			mCamera.stopPreview();
+		} catch (Exception e) {
+			// ignore: tried to stop a non-existent preview
+		}
 	}
 
 }

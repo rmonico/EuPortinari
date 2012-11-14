@@ -1,10 +1,28 @@
 package br.zero.euportinari;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
+import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -13,16 +31,17 @@ import android.widget.Toast;
 
 public class BackCameraActivity extends Activity {
 
-    private static final String TAG = "BackCameraActivity";
+	private static final String TAG = "BackCameraActivity";
 	private Camera mCamera;
 	private CameraSurface mCameraSurfaceView;
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_back_camera);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		System.gc();
+		setContentView(R.layout.activity_back_camera);
 
-        int backCameraId = findBackFacingCamera();
+		int backCameraId = findBackFacingCamera();
 
 		if (backCameraId == -1) {
 			Toast.makeText(this,
@@ -46,7 +65,7 @@ public class BackCameraActivity extends Activity {
 
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(mCameraSurfaceView);
-    }
+	}
 
 	public Camera getCameraInstance(int cameraId) {
 		Camera c = null;
@@ -76,11 +95,11 @@ public class BackCameraActivity extends Activity {
 	}
 
 	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_back_camera, menu);
-        return true;
-    }
-	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_back_camera, menu);
+		return true;
+	}
+
 	@Override
 	protected void onPause() {
 		if (mCamera != null) {
@@ -92,7 +111,130 @@ public class BackCameraActivity extends Activity {
 
 	public void onSwitchCameraButton(View view) {
 		Intent intent = new Intent(this, CameraActivity.class);
-		
+
 		startActivity(intent);
+	}
+
+	public void onTakePictureClick(View view) {
+		PictureCallback jpegCallback = new PictureCallback() {
+
+			@Override
+			public void onPictureTaken(byte[] data, Camera camera) {
+				try {
+					Options opts = new BitmapFactory.Options();
+					opts.inDither=false;
+					opts.inPurgeable=true;
+					opts.inInputShareable=true;
+					opts.inSampleSize = 8;
+					Bitmap cameraImage = BitmapFactory.decodeByteArray(data, 0,
+							data.length, opts);
+
+					Bitmap mask = BitmapFactory.decodeResource(getResources(),
+							R.drawable.back_camera_mask, opts);
+
+					Bitmap combined = Bitmap.createBitmap(
+							cameraImage.getHeight(), cameraImage.getWidth(),
+							Bitmap.Config.ARGB_8888);
+
+					Canvas canvas = new Canvas(combined);
+
+					Matrix matrix = new Matrix();
+					matrix.postRotate(90);
+					Bitmap rotated = Bitmap.createBitmap(cameraImage, 0, 0,
+							cameraImage.getWidth(), cameraImage.getHeight(),
+							matrix, true);
+
+					canvas.drawBitmap(rotated, new Matrix(), new Paint());
+
+					Rect src = new Rect(0, 0, mask.getWidth(), mask.getHeight());
+					RectF dest = new RectF(0, 0, rotated.getWidth(),
+							rotated.getHeight());
+					canvas.drawBitmap(mask, src, dest, null);
+
+					canvas.save();
+
+					File pictureFile = getOutputMediaFile();
+					if (pictureFile == null) {
+						Log.d(TAG,
+								"Error creating media file, check storage permissions.");
+						return;
+					}
+
+					try {
+						pictureFile.createNewFile();
+					} catch (IOException e) {
+						String text = "IOException: " + e.getMessage();
+						Toast.makeText(BackCameraActivity.this, text,
+								Toast.LENGTH_LONG).show();
+					}
+
+					try {
+						FileOutputStream fos = new FileOutputStream(pictureFile);
+						combined.compress(CompressFormat.JPEG, 100, fos);
+						fos.close();
+						Toast.makeText(
+								BackCameraActivity.this,
+								"Imagem salva em: "
+										+ pictureFile.getAbsolutePath(),
+								Toast.LENGTH_LONG).show();
+
+					} catch (FileNotFoundException e) {
+						String text = "File not found: " + e.getMessage();
+						Log.d(TAG, text);
+						Toast.makeText(BackCameraActivity.this, text,
+								Toast.LENGTH_LONG).show();
+					} catch (IOException e) {
+						String text = "Error accessing file: " + e.getMessage();
+						Log.d(TAG, text);
+						Toast.makeText(BackCameraActivity.this, text,
+								Toast.LENGTH_LONG).show();
+		 }
+				} catch (Throwable e) {
+					showText(e.getMessage());
+				}
+			}
+
+			private void showText(String text) {
+				Toast.makeText(BackCameraActivity.this, text,
+						Toast.LENGTH_SHORT).show();
+			}
+
+			private File getOutputMediaFile() {
+
+				File mediaStorageDir = new File(
+						Environment
+								.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+						TAG);
+
+				if (!mediaStorageDir.exists()) {
+
+					if (!mediaStorageDir.mkdirs()) {
+
+						Log.d(TAG, "failed to create directory");
+
+						return null;
+
+					}
+
+				}
+
+				// Create a media file name
+
+				String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+						.format(new Date());
+
+				File mediaFile;
+
+				mediaFile = new File(Environment.getExternalStorageDirectory()
+						.getPath()
+						+ "/external_sd/files/IMG_"
+						+ timeStamp
+						+ ".jpg");
+
+				return mediaFile;
+			}
+		};
+
+		mCamera.takePicture(null, null, jpegCallback);
 	}
 }
