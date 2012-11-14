@@ -32,6 +32,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@android:color/transparent"
+            android:onClick="onSwitchCameraClick"
             android:paddingLeft="15dp"
             android:src="@drawable/switch_cameras" />
 
