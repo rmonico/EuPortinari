@@ -1,12 +1,17 @@
 <resources>
 
-    <string name="app_name">Eu Portinari</string>
+    <string name="app_name">EuPortinari</string>
     <string name="menu_settings">Configurações</string>
     <string name="main_title">Eu Portinari</string>
     <string name="capture">Capture</string>
-    <string name="name_select_label">Name selection Activity</string>
-    <string name="name_select_title">Digite seu nome</string>
+    <string name="name_select_label">Insira seu nome</string>
+    <string name="name_select_title">Insira seu nome</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_home">Home</string>
+    <string name="title_activity_home">Faça seu retrato</string>
+    <string name="title_activity_back_camera">Câmera traseira</string>
+    <string name="title_activity_info">Instruções</string>
+    <string name="title_activity_obras">Obras</string>
+    <string name="title_activity_exercicios">Exercícios</string>
+    <string name="title_activity_about">Sobre&#8230;</string>
 
 </resources>

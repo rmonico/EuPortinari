@@ -1,22 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <FrameLayout
         android:id="@+id/camera_preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
 
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/mask"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/mask" />
+        android:src="@drawable/back_camera_mask" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -29,22 +32,23 @@
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:onClick="onSwitchCameraClick"
-            android:paddingLeft="15dp"
-            android:src="@drawable/switch_cameras" />
+            android:paddingBottom="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/take_picture" />
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:paddingBottom="15dp"
-            android:src="@drawable/take_picture" />
+            android:onClick="onSwitchCameraButton"
+            android:paddingLeft="15dp"
+            android:src="@drawable/switch_cameras" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -53,7 +57,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@android:color/transparent"
-            android:onClick="onTakePicture"
+            android:onClick="onTakePictureClick"
             android:paddingRight="15dp"
             android:src="@drawable/save_picture" />
 
