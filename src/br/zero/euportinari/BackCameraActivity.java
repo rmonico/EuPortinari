@@ -24,7 +24,6 @@ import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -34,37 +33,12 @@ public class BackCameraActivity extends Activity {
 	private static final String TAG = "BackCameraActivity";
 	private Camera mCamera;
 	private CameraSurface mCameraSurfaceView;
+	private FrameLayout preview;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		System.gc();
 		setContentView(R.layout.activity_back_camera);
-
-		int backCameraId = findBackFacingCamera();
-
-		if (backCameraId == -1) {
-			Toast.makeText(this,
-					"Câmera traseira não encontrada, usando camera padrão.",
-					Toast.LENGTH_LONG);
-			backCameraId = 0;
-		}
-
-		// Create an instance of Camera
-		mCamera = getCameraInstance(backCameraId);
-
-		if (mCamera == null) {
-			Toast.makeText(this, "Camera not found", Toast.LENGTH_SHORT).show();
-			return;
-		}
-
-		mCamera.setDisplayOrientation(90);
-
-		// Create our Preview view and set it as the content of our activity.
-		mCameraSurfaceView = new CameraSurface(this, mCamera);
-
-		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-		preview.addView(mCameraSurfaceView);
 	}
 
 	public Camera getCameraInstance(int cameraId) {
@@ -95,9 +69,32 @@ public class BackCameraActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_back_camera, menu);
-		return true;
+	protected void onResume() {
+		super.onResume();
+		int backCameraId = findBackFacingCamera();
+
+		if (backCameraId == -1) {
+			Toast.makeText(this,
+					"Câmera traseira não encontrada, usando camera padrão.",
+					Toast.LENGTH_LONG);
+			backCameraId = 0;
+		}
+
+		// Create an instance of Camera
+		mCamera = getCameraInstance(backCameraId);
+
+		if (mCamera == null) {
+			Toast.makeText(this, "Camera not found", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		mCamera.setDisplayOrientation(90);
+
+		// Create our Preview view and set it as the content of our activity.
+		mCameraSurfaceView = new CameraSurface(this, mCamera);
+
+		preview = (FrameLayout) findViewById(R.id.camera_preview);
+		preview.addView(mCameraSurfaceView);
 	}
 
 	@Override
@@ -105,6 +102,8 @@ public class BackCameraActivity extends Activity {
 		if (mCamera != null) {
 			mCamera.release();
 			mCamera = null;
+
+			preview.removeAllViews();
 		}
 		super.onPause();
 	}
@@ -122,10 +121,10 @@ public class BackCameraActivity extends Activity {
 			public void onPictureTaken(byte[] data, Camera camera) {
 				try {
 					Options opts = new BitmapFactory.Options();
-					opts.inDither=false;
-					opts.inPurgeable=true;
-					opts.inInputShareable=true;
-					opts.inSampleSize = 8;
+					opts.inDither = false;
+					opts.inPurgeable = true;
+					opts.inInputShareable = true;
+//					opts.inSampleSize = 8;
 					Bitmap cameraImage = BitmapFactory.decodeByteArray(data, 0,
 							data.length, opts);
 
@@ -188,10 +187,15 @@ public class BackCameraActivity extends Activity {
 						Log.d(TAG, text);
 						Toast.makeText(BackCameraActivity.this, text,
 								Toast.LENGTH_LONG).show();
-		 }
+					}
 				} catch (Throwable e) {
 					showText(e.getMessage());
 				}
+				
+				Intent intent = new Intent(BackCameraActivity.this, HomeActivity.class);
+
+				startActivity(intent);
+
 			}
 
 			private void showText(String text) {

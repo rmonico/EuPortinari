@@ -1,8 +1,7 @@
 package br.zero.euportinari;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 
 public class ExerciciosActivity extends Activity {
 
@@ -12,9 +11,4 @@ public class ExerciciosActivity extends Activity {
         setContentView(R.layout.activity_exercicios);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_exercicios, menu);
-        return true;
-    }
 }

@@ -7,7 +7,6 @@
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cropToPadding="false"
         android:scaleType="centerCrop"
         android:src="@drawable/select_name_background" />
 

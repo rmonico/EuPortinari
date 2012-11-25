@@ -24,7 +24,6 @@ import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -34,36 +33,12 @@ public class CameraActivity extends Activity {
 	private static final String TAG = "EuPortinari";
 	private Camera mCamera;
 	private CameraSurface mCameraSurfaceView;
+	private FrameLayout preview;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera);
-
-		int frontCameraId = findFrontFacingCamera();
-
-		if (frontCameraId == -1) {
-			Toast.makeText(this,
-					"Câmera frontal não encontrada, usando camera padrão.",
-					Toast.LENGTH_LONG);
-			frontCameraId = 0;
-		}
-
-		// Create an instance of Camera
-		mCamera = getCameraInstance(frontCameraId);
-
-		if (mCamera == null) {
-			Toast.makeText(this, "Camera not found", Toast.LENGTH_SHORT).show();
-			return;
-		}
-
-		mCamera.setDisplayOrientation(90);
-
-		// Create our Preview view and set it as the content of our activity.
-		mCameraSurfaceView = new CameraSurface(this, mCamera);
-
-		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-		preview.addView(mCameraSurfaceView);
 	}
 
 	private int findFrontFacingCamera() {
@@ -97,12 +72,31 @@ public class CameraActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		int frontCameraId = findFrontFacingCamera();
+
+		if (frontCameraId == -1) {
+			Toast.makeText(this,
+					"Câmera frontal não encontrada, usando camera padrão.",
+					Toast.LENGTH_LONG);
+			frontCameraId = 0;
+		}
+
+		// Create an instance of Camera
+		mCamera = getCameraInstance(frontCameraId);
+
+		if (mCamera == null) {
+			Toast.makeText(this, "Camera not found", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		mCamera.setDisplayOrientation(90);
+
+		// Create our Preview view and set it as the content of our activity.
+		mCameraSurfaceView = new CameraSurface(this, mCamera);
+
+		preview = (FrameLayout) findViewById(R.id.camera_preview);
+		preview.addView(mCameraSurfaceView);
 	}
 
 	@Override
@@ -110,6 +104,8 @@ public class CameraActivity extends Activity {
 		if (mCamera != null) {
 			mCamera.release();
 			mCamera = null;
+			
+			preview.removeAllViews();
 		}
 		super.onPause();
 	}
@@ -121,10 +117,10 @@ public class CameraActivity extends Activity {
 			@Override
 			public void onPictureTaken(byte[] data, Camera camera) {
 				Options opts = new BitmapFactory.Options();
-				opts.inDither=false;
-				opts.inPurgeable=true;
-				opts.inInputShareable=true;
-				opts.inSampleSize = 8;
+				opts.inDither = false;
+				opts.inPurgeable = true;
+				opts.inInputShareable = true;
+//				opts.inSampleSize = 8;
 				Bitmap cameraImage = BitmapFactory.decodeByteArray(data, 0,
 						data.length, opts);
 
@@ -186,6 +182,10 @@ public class CameraActivity extends Activity {
 					Toast.makeText(CameraActivity.this, text, Toast.LENGTH_LONG)
 							.show();
 				}
+				
+				Intent intent = new Intent(CameraActivity.this, HomeActivity.class);
+
+				startActivity(intent);
 			}
 
 			// private void showText(String text) {
@@ -196,8 +196,9 @@ public class CameraActivity extends Activity {
 			private File getOutputMediaFile() {
 
 				File mediaStorageDir = new File(
-						Environment.getExternalStoragePublicDirectory(
-						Environment.DIRECTORY_PICTURES), TAG);
+						Environment
+								.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+						TAG);
 
 				if (!mediaStorageDir.exists()) {
 
@@ -233,7 +234,7 @@ public class CameraActivity extends Activity {
 
 	public void onSwitchCameraClick(View view) {
 		Intent intent = new Intent(this, BackCameraActivity.class);
-		
+
 		startActivity(intent);
 	}
 }

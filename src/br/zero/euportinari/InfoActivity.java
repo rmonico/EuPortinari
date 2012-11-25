@@ -1,9 +1,8 @@
 package br.zero.euportinari;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 
 public class InfoActivity extends Activity {
@@ -14,12 +13,6 @@ public class InfoActivity extends Activity {
         setContentView(R.layout.activity_info);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_info, menu);
-        return true;
-    }
-    
 	public void onInfoClick(View view) {
 		Intent intent = new Intent(this, InfoActivity.class);
 		

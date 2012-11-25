@@ -3,7 +3,7 @@ package br.zero.euportinari;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,7 +15,10 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.activity_home);
 
 		TextView name = (TextView) findViewById(R.id.textView1);
-
+		
+		name.setTypeface(NameSelectActivity.strangeLoveFont);
+		name.setTextSize(TypedValue.COMPLEX_UNIT_PT, 12);
+		
 		String selectedName = getSelectedName();
 
 		name.setText(selectedName);
@@ -27,12 +30,6 @@ public class HomeActivity extends Activity {
 			return (String) getIntent().getExtras().get("name");
 		else
 			return null;
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_home, menu);
-		return true;
 	}
 
 	public void onPiaoClick(View view) {
