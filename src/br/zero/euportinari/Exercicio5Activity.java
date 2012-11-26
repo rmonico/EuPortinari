@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
-public class Exercicio2Activity extends Activity {
+public class Exercicio5Activity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercicio2);
+        setContentView(R.layout.activity_exercicio5);
     }
 
 	public void onInfoClick(View view) {
@@ -33,7 +33,7 @@ public class Exercicio2Activity extends Activity {
 	}
 
 	public void onExerciciosClick(View view) {
-		Intent intent = new Intent(this, Exercicio3Activity.class);
+		Intent intent = new Intent(this, Exercicio6Activity.class);
 
 		startActivity(intent);
 	}
