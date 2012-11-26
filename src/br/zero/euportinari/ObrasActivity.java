@@ -20,7 +20,7 @@ public class ObrasActivity extends Activity {
 	}
 
 	public void onObrasClick(View view) {
-		Intent intent = new Intent(this, ObrasActivity.class);
+		Intent intent = new Intent(this, PortinariActivity.class);
 
 		startActivity(intent);
 	}

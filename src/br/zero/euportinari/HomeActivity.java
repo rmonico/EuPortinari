@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class HomeActivity extends Activity {
 
+	private static String selectedName;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,9 +19,12 @@ public class HomeActivity extends Activity {
 		TextView name = (TextView) findViewById(R.id.textView1);
 		
 		name.setTypeface(NameSelectActivity.strangeLoveFont);
-		name.setTextSize(TypedValue.COMPLEX_UNIT_PT, 12);
+		name.setTextSize(TypedValue.COMPLEX_UNIT_PT, 24);
 		
-		String selectedName = getSelectedName();
+		name.setTextColor(NameSelectActivity.nameColor);
+		
+		if (selectedName == null)
+			selectedName = getSelectedName();
 
 		name.setText(selectedName);
 	}

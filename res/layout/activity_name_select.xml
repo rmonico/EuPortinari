@@ -14,18 +14,14 @@
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="233dp"
+        android:layout_centerVertical="true"
         android:background="@android:color/transparent"
         android:capitalize="words"
         android:contentDescription="Caixa de texto para entrar com o nome"
         android:ems="10"
         android:inputType="text|textCapWords"
-        android:width="120dp" >
-
-        <requestFocus />
-    </EditText>
+        android:width="160dp" />
 
     <ImageButton
         android:id="@+id/select_name_ok_button"
@@ -33,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         android:background="@android:color/white"
         android:onClick="selectNameOnClick"
         android:src="@drawable/ok_button" />

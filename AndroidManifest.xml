@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".PresentationActivity"
-            android:label="@string/main_title" >
+            android:label="@string/main_title"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,80 +30,73 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="@string/main_title" >
+            android:label="@string/main_title"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".NameSelectActivity"
-            android:label="@string/name_select_title" >
+            android:label="@string/name_select_title"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".BackCameraActivity"
-            android:label="@string/title_activity_back_camera" >
+            android:label="@string/title_activity_back_camera"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".InfoActivity"
-            android:label="@string/title_activity_info" >
+            android:label="@string/title_activity_info"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".ObrasActivity"
-            android:label="@string/title_activity_obras" >
+            android:label="@string/title_activity_obras"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio1Activity"
-            android:label="@string/title_activity_exercicios" >
+            android:label="@string/title_activity_exercicios"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:label="@string/title_activity_about"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio2Activity"
-            android:label="@string/title_activity_exercicio2" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_exercicio2"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio3Activity"
-            android:label="@string/title_activity_exercicio3" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_exercicio3"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio4Activity"
-            android:label="@string/title_activity_exercicio4" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_exercicio4"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio5Activity"
-            android:label="@string/title_activity_exercicio5" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_exercicio5"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".Exercicio6Activity"
-            android:label="@string/title_activity_exercicio6" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_exercicio6"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".PortinariActivity"
+            android:label="@string/title_activity_portinari"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
     </application>
 
