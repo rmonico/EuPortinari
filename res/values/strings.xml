@@ -13,5 +13,6 @@
     <string name="title_activity_obras">Obras</string>
     <string name="title_activity_exercicios">Exercícios</string>
     <string name="title_activity_about">Sobre&#8230;</string>
+    <string name="title_activity_exercicio2">Exercicio2Activity</string>
 
 </resources>

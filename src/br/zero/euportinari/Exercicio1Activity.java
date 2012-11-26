@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class ObrasActivity extends Activity {
+public class Exercicio1Activity extends Activity {
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_obras);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exercicios);
+    }
 
 	public void onInfoClick(View view) {
 		Intent intent = new Intent(this, InfoActivity.class);
@@ -32,7 +32,7 @@ public class ObrasActivity extends Activity {
 	}
 
 	public void onExerciciosClick(View view) {
-		Intent intent = new Intent(this, Exercicio1Activity.class);
+		Intent intent = new Intent(this, Exercicio2Activity.class);
 
 		startActivity(intent);
 	}

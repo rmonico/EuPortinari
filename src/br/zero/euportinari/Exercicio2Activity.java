@@ -1,17 +1,18 @@
 package br.zero.euportinari;
 
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
-public class ObrasActivity extends Activity {
+public class Exercicio2Activity extends Activity {
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_obras);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exercicio2);
+    }
 
 	public void onInfoClick(View view) {
 		Intent intent = new Intent(this, InfoActivity.class);
@@ -32,9 +33,9 @@ public class ObrasActivity extends Activity {
 	}
 
 	public void onExerciciosClick(View view) {
-		Intent intent = new Intent(this, Exercicio1Activity.class);
-
-		startActivity(intent);
+//		Intent intent = new Intent(this, Exercicio3Activity.class);
+//
+//		startActivity(intent);
 	}
 
 	public void onAboutClick(View view) {
@@ -42,5 +43,4 @@ public class ObrasActivity extends Activity {
 
 		startActivity(intent);
 	}
-
 }

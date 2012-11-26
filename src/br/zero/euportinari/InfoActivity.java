@@ -32,7 +32,7 @@ public class InfoActivity extends Activity {
 	}
 	
 	public void onExerciciosClick(View view) {
-		Intent intent = new Intent(this, ExerciciosActivity.class);
+		Intent intent = new Intent(this, Exercicio1Activity.class);
 
 		startActivity(intent);
 	}

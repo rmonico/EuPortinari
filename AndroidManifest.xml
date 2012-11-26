@@ -52,12 +52,21 @@
             android:label="@string/title_activity_obras" >
         </activity>
         <activity
-            android:name=".ExerciciosActivity"
+            android:name=".Exercicio1Activity"
             android:label="@string/title_activity_exercicios" >
         </activity>
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name=".Exercicio2Activity"
+            android:label="@string/title_activity_exercicio2" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
