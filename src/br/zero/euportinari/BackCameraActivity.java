@@ -231,7 +231,7 @@ public class BackCameraActivity extends Activity {
 
 				mediaFile = new File(Environment.getExternalStorageDirectory()
 						.getPath()
-						+ "/external_sd/files/IMG_"
+						+ "/IMG_"
 						+ timeStamp
 						+ ".jpg");
 
